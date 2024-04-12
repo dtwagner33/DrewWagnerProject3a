@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Stock Data Visualizer
+{% endblock %}
+
+{% block content %}
+    <div class="title">
+        <h1>Stock Data Visualizer</h1>
+    </div>
+    <form action="/" method="post">
+        <label for="symbol">Select a symbol:</label>
+        <select name="symbol" id="symbol">
+            {% for symbol in symbols %}
+                <option value="{{ symbol }}">{{ symbol }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="function">Select a time series function:</label>
+        <select name="function" id="function">
+            <option value="TIME_SERIES_DAILY">Daily</option>
+            <option value="TIME_SERIES_WEEKLY">Weekly</option>
+            <option value="TIME_SERIES_MONTHLY">Monthly</option>
+            <option value="TIME_SERIES_INTRADAY">Intraday</option>
+        </select>
+        <br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        <br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        <br>
+
+        <label for="interval">Intraday Interval:</label>
+        <select name="interval" id="interval">
+            <option value="1min">1min</option>
+            <option value="5min">5min</option>
+            <option value="15min">15min</option>
+            <option value="30min">30min</option>
+            <option value="60min">60min</option>
+        </select>
+        <br>
+
+        <label for="chart_type">Select a chart type:</label>
+        <select name="chart_type" id="chart_type">
+            <option value="line">Line Chart</option>
+            <option value="bar">Bar Chart</option>
+            <option value="scatter">Scatter Plot</option>
+        </select>
+        <br>
+
+        <input type="submit" value="Generate Chart">
+    </form>
+{% endblock %}
