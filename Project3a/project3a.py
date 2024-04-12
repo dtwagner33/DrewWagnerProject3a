@@ -49,6 +49,7 @@ def get_stock_data(symbol, function, start_date, end_date, api_key, interval=Non
 # Graph
 def generate_graph(data, chart_type):
     dates = list(data.keys())
+    dates.sort()
     prices = [float(data[date]['4. close']) for date in dates]
     
     plt.figure(figsize=(10, 6))
